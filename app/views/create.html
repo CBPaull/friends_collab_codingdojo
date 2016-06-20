@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create/Edit</title>
+	<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+{% if friend == None: %}
+<h1>Please Add a Friend</h1>
+	<form action='/friends/new' method='POST'>
+		<table>
+			<thead>
+			<tr><th class="col1"></th><th class="col2">Your New Friend</th><th class="col3"></th></tr>
+			</thead>
+			<tr><td>First Name: </td><td class="col3"><input type="text" name="firstname" placeholder="First Name"></td></tr>
+			<tr><td>Last Name: </td><td class="col3"><input type="text" name="lastname" placeholder="Last Name"></td></tr>
+			<tr><td>Occupation: </td><td class="col3"><input type="text" name="occupation" placeholder="occupation"></td></tr>
+			<tr><td>Known For: </td><td class="col3"><input type="text" name="knownfor" placeholder="known for..."></td></tr>
+		</table>
+		<button type="submit">Update</button>
+		<a href="/"><button type="button">Back</button></a>
+	</form>
+{% else%}
+<h1>Please enter a Friend</h1>
+	<form action='/friends/update' method='POST'>
+		<table>
+			<thead>
+			<tr><th class="col1"></th><th class="col2">Your Friend</th><th class="col3"></th></tr>
+			</thead>
+			<tr><td>First Name: </td><td class="col3"><input type="text" name="firstname" value="{{friend['firstname']}}"></td></tr>
+			<tr><td>Last Name: </td><td class="col3"><input type="text" name="lastname" value="{{friend['lastname']}}"></td></tr>
+			<tr><td>Occupation: </td><td class="col3"><input type="text" name="occupation" value="{{friend['occupation']}}"></td></tr>
+			<tr><td>Known For: </td><td class="col3"><input type="text" name="knownfor" value="{{friend['knownfor']}}"></td></tr>
+
+		</table>
+		<button type="submit">Update</button>
+		<a href="/"><button type="button">Back</button></a>
+		<input type="hidden" name="f_id" value="{{friend['id']}}">
+	</form>
+	<form action="/friends/delete" method="post" onsubmit="return confirm('Deleting Friend!');">
+		<button type="submit">Delete</button>
+	</form>
+{% endif %}
+</body>
+</html>

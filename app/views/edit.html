@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit</title>
+	<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<h1>Please enter a Friend</h1>
+	<form action='/friends/update' method='POST'>
+		<table>
+			<thead>
+			<tr><th class="col1"></th><th class="col2">Your Friend</th><th class="col3"></th></tr>
+			</thead>
+			<tr><td>First Name: </td><td class="col3"><input type="text" name="firstname" value="{{friend['firstname']}}"></td></tr>
+			<tr><td>Last Name: </td><td class="col3"><input type="text" name="lastname" value="{{friend['lastname']}}"></td></tr>
+			<tr><td>Occupation: </td><td class="col3"><input type="text" name="occupation" value="{{friend['occupation']}}"></td></tr>
+			<tr><td>Known For: </td><td class="col3"><input type="text" name="knownfor" value="{{friend['knownfor']}}"></td></tr>
+
+		</table>
+		<button type="submit">Update</button>
+		<a href="/"><button type="button">Back</button></a>
+		<input type="hidden" name="f_id" value="{{friend['id']}}">
+	</form>
+	<form action="/friends/delete" method="post" onsubmit="return confirm('Deleting Friend!');">
+		<button type="submit">Delete</button>
+	</form>
+</body>
+</html>

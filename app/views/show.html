@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Show</title>
+	<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th class="col1"></th>
+				<th class="col2">Your Friend</th>
+				<th class="col3"></th>
+			</tr>
+		</thead>
+		<tr><td>First Name: </td><td>{{friend['firstname']}}</td></tr>
+		<tr><td>Last Name: </td><td>{{friend['lastname']}}</td></tr>
+		<tr><td>Occupation: </td><td>{{friend['occupation']}}</td>></tr>
+		<tr><td>Known For: </td><td>{{friend['knownfor']}}</td></tr>
+	</table>
+	<form action='/friends/edit/{{friend["id"]}}'>
+		<input type="submit" value="Edit">
+	</form>
+	<form action="/friends/delete" method="post" onsubmit="return confirm('Deleting Friend!');">
+		<input type="hidden" name="f_id" value="{{friend['id']}}">
+		<button type="submit">Delete</button>
+	</form>
+	<a href="/"><button type="button">Back</button></a>
+</body>
+</html>

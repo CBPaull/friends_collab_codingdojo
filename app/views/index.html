@@ -1,8 +1,27 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
-  </head>
-  <body>
-    The best place to start is the "WelcomeController.py" file in app/controllers.
-  </body>
+<head>
+	<title>index</title>
+	<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<h1>Friends</h1>
+	<a href='/friends/create'><button type="button">Add</button></a>
+	<hr>
+	{% for friend in all_friends: %}
+		<p>First Name: {{ friend['firstname'] }}</p>
+		<p>Last Name: {{ friend['lastname'] }}</p>
+		<p>Occupation: {{ friend['occupation'] }}</p>
+		<p>Known For: {{ friend['knownfor'] }}</p>
+		<p>Created at: {{ friend['created_at'] }}</p>
+		<p>Updated at: {{ friend['updated_at'] }}</p>
+		<a href='/friends/show/{{ friend["id"] }}'><button type="button">View Friend</button></a>
+		<a href='/friends/edit/{{ friend["id"] }}'><button type="button">Update Friend</button></a>
+		<form action="/friends/delete" method="post" onsubmit="return confirm('Deleting Friend!');">
+			<input type="hidden" name="f_id" value="{{friend['id']}}">
+			<button type="submit">Delete</button>
+		</form>
+		<hr>
+	{% endfor %}
+</body>
 </html>
